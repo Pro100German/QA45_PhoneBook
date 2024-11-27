@@ -14,8 +14,11 @@ public class LoginPage extends BasePage{
     }
     @FindBy(xpath = "//input[@name='email']")
     WebElement inputEmail;
+    @FindBy(xpath = "//input[@name='password']")
+    WebElement inputPassword;
     public void typeLoginForm(String email, String password){
         inputEmail.sendKeys(email);
+        inputPassword.sendKeys(password);
 
     }
 
