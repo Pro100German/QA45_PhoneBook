@@ -29,9 +29,9 @@ public class LoginTests extends ApplicationManager {
 
     @Test
     public void loginPositiveTest(){
-        UserDto user  = new UserDto(email, password);
+        UserDto userLogin  = new UserDto(email, password);
         new HomePage(getDriver()).clickBtnLoginHeader();
-        new LoginPage(getDriver()).typeLoginForm(user);
+        new LoginPage(getDriver()).typeLoginForm(userLogin);
         Assert.assertTrue(new ContactsPage(getDriver()).isSignOutPresent());
     }
 }
