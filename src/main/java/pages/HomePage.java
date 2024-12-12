@@ -16,18 +16,12 @@ public class HomePage extends BasePage{
 
     @FindBy(xpath = "//a[text()='LOGIN']")
     WebElement btnLogin;
-    @FindBy(xpath = "//a[text()='ADD']")
-    WebElement btnADD;
+
 
    // WebElement btnLogin1 = driver.findElement(By.xpath("//a[text()='LOGIN']"));
 
     public void clickBtnLoginHeader(){
         btnLogin.click();
         pause(3);
-    }
-    public void clickBtnAdd(){
-        btnADD.click();
-        pause(2);
-
     }
 }

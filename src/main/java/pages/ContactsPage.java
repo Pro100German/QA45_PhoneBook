@@ -1,5 +1,6 @@
 package pages;
 
+import dto.UserDtoLombok;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,14 +16,32 @@ public class ContactsPage extends BasePage{
 
     @FindBy(xpath = "//button[text()='Sign Out']")
     WebElement btnSignOut;
+    @FindBy(xpath = "//a[text()='ADD']")
+    WebElement btnAdd;
+    @FindBy(xpath = "//div[@class='contact-page_leftdiv__yhyke']/div/div[last()]")
+    WebElement lastElementContactList;
+
+    public boolean validateElementContacts(UserDtoLombok contact){
+        System.out.println(lastElementContactList.getText());
+        return lastElementContactList.getText().contains(contact.getName());
+    }
 
     public void clickBtnSignOut(){
-        pause(4);
+        pause(1);
         btnSignOut.click();
     }
 
     public boolean isSignOutPresent(){
-        pause(4);
+        pause(1);
         return btnSignOut.isDisplayed();
     }
+    public void clickBtnAdd(){
+        pause(1);
+        btnAdd.click();
+    }
+
+    public boolean validateLastElementContactList(UserDtoLombok contact) {
+        return lastElementContactList.getText().contains(contact.getName());
+    }
+
 }
