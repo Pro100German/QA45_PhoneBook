@@ -30,6 +30,11 @@ public class AddPage extends BasePage{
     WebElement inputDescription;
     @FindBy(xpath = "//b/..")
     WebElement btnSave;
+    @FindBy(xpath = "//button[text()='Edit']")
+    WebElement btnEdit;
+    @FindBy(xpath = "//input[@placeholder='Name']")
+    WebElement inputEditName;
+
 
 
 
@@ -42,11 +47,12 @@ public class AddPage extends BasePage{
         inputDescription.sendKeys(contact.getDescription());
         btnSave.click();
     }
-    public void closeAlert() {
+    public String closeAlertAndReturnText() {
         Alert alert = new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.alertIsPresent());
-        System.out.println(alert.getText());
+        String text = alert.getText();
         alert.accept();
+        return text;
     }
 
     public boolean validateErrorMessageWrongEmail(String text) {
@@ -55,4 +61,15 @@ public class AddPage extends BasePage{
     public boolean validateErrorMessageWrongPhone(String text){
         return text.contains("Phone number must contain only digits! And length min 10, max 15!");
     }
+    public boolean validateUrlContacts(){
+        return validateUrl("contacts",5);
+    }
+    public void clickEdit(){
+        btnEdit.click();
+    }
+    public void typeEditForm(UserDtoLombok contact){
+        inputEditName.sendKeys(contact.getName());
+
+    }
+
 }
