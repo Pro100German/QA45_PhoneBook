@@ -43,6 +43,7 @@ public class AddPage extends BasePage{
         inputLastName.sendKeys(contact.getLastName());
         inputPhone.sendKeys(contact.getPhone());
         inputEmail.sendKeys(contact.getEmail());
+        inputAddress.clear();
         inputAddress.sendKeys(contact.getAddress());
         inputDescription.sendKeys(contact.getDescription());
         btnSave.click();
@@ -71,5 +72,6 @@ public class AddPage extends BasePage{
         inputEditName.sendKeys(contact.getName());
 
     }
+
 
 }

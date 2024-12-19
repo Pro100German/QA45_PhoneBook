@@ -1,5 +1,6 @@
 package tests;
 
+import data_provider.DPContact;
 import dto.UserDto;
 import dto.UserDtoLombok;
 import manager.ApplicationManager;
@@ -29,7 +30,15 @@ public class AddContactTests extends ApplicationManager {
     }
 
 
-    @Test(invocationCount = 3)
+    @Test(dataProvider = "newAddContactDP", dataProviderClass = DPContact.class)
+    public void addNewDPContactPositiveTest(UserDtoLombok contact) {
+
+        addPage.typeAddForm(contact);
+        Assert.assertTrue(new ContactsPage(getDriver())
+                .validateLastElementContactList(contact));
+    }
+
+    @Test
     public void addNewContactPositiveTest() {
         int i = new Random().nextInt(1000);
         UserDtoLombok contact = UserDtoLombok.builder()
