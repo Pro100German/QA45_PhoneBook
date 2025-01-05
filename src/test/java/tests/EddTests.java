@@ -6,10 +6,15 @@ import dto.UserDtoLombok;
 import manager.ApplicationManager;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.*;
+import utils.TestNGListener;
+
 import static utils.RandomUtils.*;
+
+@Listeners(TestNGListener.class)
 
 public class EddTests extends ApplicationManager {
     UserDto user = new UserDto("myphone@gmail.com","Nnoa12345$");

@@ -2,13 +2,15 @@ package tests;
 
 import manager.ApplicationManager;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
-
 import java.util.Random;
-
 import pages.HomePage;
 import pages.LoginPage;
+import utils.TestNGListener;
+
+@Listeners(TestNGListener.class)
 
 public class RegistrationTests extends ApplicationManager {
 

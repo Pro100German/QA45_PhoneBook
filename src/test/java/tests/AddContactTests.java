@@ -4,20 +4,30 @@ import data_provider.DPContact;
 import dto.UserDto;
 import dto.UserDtoLombok;
 import manager.ApplicationManager;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.AddPage;
 import pages.ContactsPage;
 import pages.HomePage;
 import pages.LoginPage;
+import utils.TestNGListener;
+
 
 import java.util.Random;
 
+import static utils.PropertiesReader.*;
+import static utils.TakeScreenShot.*;
+
+@Listeners(TestNGListener.class)
+
 public class AddContactTests extends ApplicationManager {
     SoftAssert softAssert = new SoftAssert();
-    UserDto user = new UserDto("myphone@gmail.com", "Nnoa12345$");
+    UserDto user = new UserDto(getProperty("login.properties","email"),getProperty("login.properties","password"));
+    //UserDto user = new UserDto("myphone@gmail.com", "Nnoa12345$");
     AddPage addPage;
 
     @BeforeMethod
@@ -40,6 +50,7 @@ public class AddContactTests extends ApplicationManager {
 
     @Test
     public void addNewContactPositiveTest() {
+        logger.info("last name Ivanov");
         int i = new Random().nextInt(1000);
         UserDtoLombok contact = UserDtoLombok.builder()
                 .name(i+"Ivan")
@@ -50,6 +61,7 @@ public class AddContactTests extends ApplicationManager {
                 .description("good student")
                 .build();
         addPage.typeAddForm(contact);
+        takeScreenShot((TakesScreenshot) getDriver());
         Assert.assertTrue(new ContactsPage(getDriver())
                 .validateLastElementContactList(contact));
 

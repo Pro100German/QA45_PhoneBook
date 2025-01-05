@@ -6,12 +6,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.ContactsPage;
 import pages.HomePage;
 import pages.LoginPage;
+import utils.TestNGListener;
 
 import java.util.Random;
+@Listeners(TestNGListener.class)
 
 public class LoginTests extends ApplicationManager {
 
@@ -29,7 +32,8 @@ public class LoginTests extends ApplicationManager {
 
     @Test
     public void loginPositiveTest(){
-        UserDto userLogin  = new UserDto(email, password);
+
+        UserDto userLogin  = new UserDto("myphone@gmail.com", "Nnoa12345$");
         new HomePage(getDriver()).clickBtnLoginHeader();
         new LoginPage(getDriver()).typeLoginForm(userLogin);
         Assert.assertTrue(new ContactsPage(getDriver()).isSignOutPresent());
